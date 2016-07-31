@@ -1,0 +1,65 @@
+var hands = ['rock', 'paper', 'scissors'];
+
+
+player1 = {
+  name : "Terrence",
+  pick : getHand()
+};
+
+player2 = {
+  name : "Sally",
+  pick : getHand()
+};
+
+var player1Wins = 0;
+var player2Wins = 0;
+
+
+function getHand(){
+  return hands[parseInt(Math.random()*10) %3];
+}
+
+
+function playRound(player1, player2){
+    player1.pick = getHand();
+    player2.pick = getHand();
+  
+  console.log(player1.name + " picked " + player1.pick + " and " + player2.name + " picked " + player2.pick + "." );
+
+   if (hands.indexOf(player1.pick) === hands.indexOf(player2.pick)){
+    console.log("It's a Tie");
+  }
+  else if (player1.pick === 'rock' && player2.pick != 'paper'){
+    console.log(player1.name + " wins!");
+    player1Wins ++;
+  } 
+  else if (player1.pick === 'paper' && player2.pick != 'scissors'){
+    console.log(player1.name + " wins!");
+    player1Wins ++;
+  } 
+  else if (player1.pick === 'scissors' && player2.pick != 'rock' ){
+    console.log(player1.name + " wins!");
+    player1Wins ++;
+  } else {
+    console.log(player2.name + " wins!")
+    player2Wins ++;
+  }
+}
+
+function playGame(player1, player2, playUntil){
+  while ( player1Wins < playUntil && player2Wins < playUntil){
+
+    playRound(player1, player2);
+  }
+  if (player1Wins === playUntil){
+    return player1;
+  }
+  else if (player2Wins === playUntil){
+    return player2;
+  };
+}
+
+
+playGame(player1, player2, 5);
+
+
